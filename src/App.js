@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react'
+import "@adyen/adyen-web/dist/adyen.css";
+import "react-loading-skeleton/dist/skeleton.css";
+import { Provider } from 'react-redux';
 import './App.css';
+import { store, MyAccount, Config, Checkout, Register } from '@cleeng/mediastore-sdk-react-16';
+
 
 function App() {
+  useEffect(() => {
+    Config.setPublisher("646179653");
+    Config.setEnvironment("staging");
+
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store={store}>
+        {/* <Register /> */}
+        {/* <Checkout offerId="S627820490_PL" /> */}
+        <MyAccount />
+      </Provider>
     </div>
   );
 }
